@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using System;
+using UnityEngine.EventSystems;
 public class InputManager
 {
     public Action KeyAciton = null;
@@ -9,6 +10,9 @@ public class InputManager
     bool _pressed = false;
     public void OnUpdate()
     {
+        if (EventSystem.current.IsPointerOverGameObject()) // UI 클릭시 확인
+            return;
+
         if (Input.anyKey && KeyAciton != null)
             KeyAciton.Invoke();
 
