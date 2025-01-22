@@ -4,7 +4,14 @@ using UnityEngine;
 
 public class Utils
 {
-
+    //특정 컴포넌트를 가져오거나 없으면 만들기
+    public static T GetOrAddComponent<T>(GameObject go) where T : UnityEngine.Component
+    {
+        T component = go.GetComponent<T>();
+        if (component == null)
+            component = go.AddComponent<T>();
+        return component;
+    }
     // 게임오브젝트 찾기(무조건 트랜스폼을 가지고 있음
     public static GameObject FindChild(GameObject go, string name = null, bool recuresive = false)
     {
