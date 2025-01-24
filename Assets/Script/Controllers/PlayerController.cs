@@ -14,8 +14,8 @@ public class PlayerController : MonoBehaviour
         //Managers.Input.KeyAciton += OnKeyboard;
         Managers.Input.MouseAction -= OnMouseClicked;
         Managers.Input.MouseAction += OnMouseClicked;
-        //TEMP
-        Managers.UI.ShowSceneUI<UI_Inven>();
+
+       // Managers.Sound.Play("UnityChan/univ0001", Define.Sound.Bgm);
 
     }
     void OnRunEvent()

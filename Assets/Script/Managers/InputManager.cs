@@ -30,7 +30,11 @@ public class InputManager
                 _pressed = false;
             }
         }
+    }
 
-
+    public void Clear()
+    {
+        KeyAciton = null;
+        MouseAction = null;
     }
 }
