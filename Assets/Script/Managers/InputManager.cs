@@ -6,8 +6,9 @@ using UnityEngine.EventSystems;
 public class InputManager
 {
     public Action KeyAciton = null;
-    public Action<Define.MousEvent> MouseAction = null;
+    public Action<Define.MouseEvent> MouseAction = null;
     bool _pressed = false;
+    float _pressedTime;
     public void OnUpdate()
     {
         if (EventSystem.current.IsPointerOverGameObject()) // UI 클릭시 확인
@@ -20,14 +21,26 @@ public class InputManager
         {
             if (Input.GetMouseButton(0))
             {
-                MouseAction.Invoke(Define.MousEvent.Press);
+                if (!_pressed)
+                {
+                    MouseAction.Invoke(Define.MouseEvent.PointerDown);
+                    _pressedTime = Time.time;
+                }
+                MouseAction.Invoke(Define.MouseEvent.Press);
                 _pressed = true;
             }
             else
             {
-                if(_pressed)
-                    MouseAction.Invoke(Define.MousEvent.Click );
+                if (_pressed)
+                {
+                    if(Time.time < _pressedTime + 0.2f)
+                        MouseAction.Invoke(Define.MouseEvent.Click);
+                    MouseAction.Invoke(Define.MouseEvent.PointerUp);
+
+                }
+                    
                 _pressed = false;
+                _pressedTime = 0;
             }
         }
     }

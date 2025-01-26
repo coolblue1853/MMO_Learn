@@ -2,14 +2,16 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using System;
-
+namespace Data
+{ 
 #region Stat
 [Serializable]
 public class Stat
 {
     public int level;
-    public int hp;
+    public int maxHp;
     public int attack;
+    public int totalExp;
 }
 [Serializable]
 public class StatData : ILoader<int, Stat>
@@ -23,4 +25,5 @@ public class StatData : ILoader<int, Stat>
         return dict;
     }
 }
-#endregion
+    #endregion
+}
